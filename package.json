@@ -1,21 +1,46 @@
 {
+  "name": "test-monorepo",
   "private": true,
+  "packageManager": "pnpm@8.2.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=7"
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.tsx,.ts .",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "devDependencies": {
-    "eslint": "^8.48.0",
-    "prettier": "^3.0.3",
-    "tsconfig": "*",
-    "turbo": "latest"
+  "lint-staged": {
+    "*.(ts|tsx|js)": [
+      "eslint --fix"
+    ]
   },
-  "name": "test-monorepo",
-  "packageManager": "npm@9.2.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "dependencies": {
+    "next": "13.5.4",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.22.15",
+    "@types/node": "^18.18.5",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10",
+    "eslint": "^8.48.0",
+    "eslint-config-custom": "workspace:*",
+    "lint-staged": "^14.0.1",
+    "postcss": "^8",
+    "prettier": "^3.0.3",
+    "tailwindcss": "^3",
+    "tsconfig": "workspace:*",
+    "turbo": "latest",
+    "typescript": "^4.9.5"
+  }
 }
